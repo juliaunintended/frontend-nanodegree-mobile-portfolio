@@ -2,7 +2,6 @@
   "name": "frontend-nanodegree-mobile-portfolio",
   "version": "1.0.0",
   "description": "rsproject",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +14,12 @@
   "bugs": {
     "url": "https://github.com/juliaunintended/frontend-nanodegree-mobile-portfolio/issues"
   },
-  "homepage": "https://github.com/juliaunintended/frontend-nanodegree-mobile-portfolio#readme"
+  "homepage": "https://github.com/juliaunintended/frontend-nanodegree-mobile-portfolio#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-pagespeed": "^2.0.1",
+    "load-grunt-tasks": "^3.5.2",
+    "ngrok": "^2.2.6"
+  }
 }
