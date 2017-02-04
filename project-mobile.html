@@ -10,10 +10,192 @@
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
     <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
 
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/print.css" rel="stylesheet">
+    <style media="screen">
+        .hero,
+        footer {
+            border-top: 1px solid #ccc
+        }
 
-    <script>
+        footer span,
+        li p {
+            font-style: italic
+        }
+
+        html {
+            font-size: 100%;
+            overflow-y: scroll;
+            -webkit-tap-highlight-color: transparent;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: none
+        }
+
+        body {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.61;
+            font-weight: 400;
+            background: #fff
+        }
+
+        b,
+        header p,
+        strong {
+            font-weight: 700
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Open Sans', sans-serif;
+            color: #333
+        }
+
+        a {
+            color: #12C
+        }
+
+        a:visited {
+            color: #61C
+        }
+
+        a:focus {
+            outline: dotted thin
+        }
+
+        a:active,
+        a:hover {
+            color: #c00;
+            outline: 0
+        }
+
+        code,
+        pre {
+            font-family: monospace, monospace;
+            font-size: 1em
+        }
+
+        ol,
+        ul {
+            margin: 1em 0;
+            padding: 0 0 0 20px
+        }
+
+        img {
+            border: 0;
+            max-width: 100%
+        }
+
+        .container,
+        footer,
+        header {
+            max-width: 45em;
+            margin: 0 auto
+        }
+
+        header {
+            padding: 0 .5em;
+            color: #C90B0B
+        }
+
+        header img {
+            border-radius: 40px;
+            float: left
+        }
+
+        header p {
+            font-size: 1.5em;
+            padding-left: 4em
+        }
+
+        header p span {
+            font-size: .8em;
+            font-weight: 400
+        }
+
+        .hero {
+            padding: 2em;
+            background-color: #f8f8f8;
+            font-size: 1.2em;
+            border-bottom: 1px solid #ccc
+        }
+
+        .content {
+            padding: 1em
+        }
+
+        .content li {
+            list-style-type: none;
+            font-size: 1.1em
+        }
+
+        li img {
+            float: left;
+            padding-right: 1em
+        }
+
+        li p {
+            font-size: .9em
+        }
+
+        footer {
+            padding: 0 .5em
+        }
+
+        footer span {
+            float: right
+        }
+
+        @media only screen and (max-width:480px) {
+            body {
+                font-size: 12px
+            }
+            header p {
+                padding-left: 4.5em
+            }
+        }
+
+        @media print {
+            * {
+                background: transparent !important;
+                color: black !important;
+                text-shadow: none !important;
+                filter: none !important;
+                -ms-filter: none !important;
+            }
+            a,
+            a:visited {
+                color: #444 !important;
+                text-decoration: underline;
+            }
+            a[href]:after {
+                content: " (" attr(href) ")";
+            }
+            tr,
+            img {
+                page-break-inside: avoid;
+            }
+            img {
+                max-width: 100% !important;
+            }
+            @page {
+                margin: 0.5cm;
+            }
+            p,
+            h2,
+            h3 {
+                orphans: 3;
+                widows: 3;
+            }
+            h2,
+            h3 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+
+    <!-- <script>
       (function(w,g){w['GoogleAnalyticsObject']=g;
       w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
 
@@ -21,13 +203,24 @@
       ga('create', 'UA-XXXX-Y');
       ga('send', 'pageview');
     </script>
-    <script src="http://www.google-analytics.com/analytics.js"></script>
-    <script async src="js/perfmatters.js"></script>
+    <script src="http://www.google-analytics.com/analytics.js"></script> -->
+    <script>
+        function logCRP() {
+            var a = window.performance.timing,
+                b = a.domContentLoadedEventStart - a.domLoading,
+                c = a.domComplete - a.domLoading,
+                d = document.getElementById("crp-stats");
+            d.textContent = "DCL: " + b + "ms, onload: " + c + "ms"
+        }
+        window.addEventListener("load", function(a) {
+            logCRP()
+        });
+    </script>
   </head>
 
   <body>
     <header>
-      <a href="/"><img src="img/profilepic.jpg"></a>
+      <a href=/><img src="data:image/jpeg;base64,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"></a>
       <p>Cameron Pittman<br><span>Course Developer</span></p>
     </header>
 
